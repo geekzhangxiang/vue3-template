@@ -1,4 +1,4 @@
-import { defineComponent, ref, reactive, nextTick, onMounted, onUnmounted } from "vue";
+import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import { Button } from "vant";
 

@@ -1,24 +1,32 @@
 <template>
   <h2>{{ title }}</h2>
-  <div>
-    <Button type="success" @click="handleMsg">发送信息</Button>
+  <div class="box">
+    <van-button type="success" @click="handleMsg">发送信息</van-button>
   </div>
-  <div>
-    <Button type="success" @click="getDevice">发送到数据仓库的信息</Button>
-    <div>{{device}}</div>
+  <div class="box">
+    <van-button type="success" @click="getDevice">
+      发送到数据仓库的信息
+    </van-button>
+    <div>{{ device }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { useStore } from "vuex";
-import { Button } from "vant";
+// import { Button } from "vant";
 export default {
   name: "message",
-  components: {
-    Button,
+  // components: {
+  //   Button,
+  // },
+  props: {
+    title: {
+      type: String,
+      default: "",
+      required: true,
+    }
   },
-  props: ["title"],
   /**
     * context包含3个属性
     * 
@@ -31,10 +39,13 @@ export default {
     const handleMsg = () => {
       emit("sendMsg", "未来你好");
     };
+    
+    watch(()=>props.title,(newValue, oldValue) => {
+      console.log("监听得到的新值和旧值", newValue, oldValue);
+    })
     const store = useStore();
     // 箭头函数这种写法自动携带返回值，加{}需要return
     let device = computed(() => store.state.settings.device);
-
 
     const getDevice = () => {
       store.dispatch("settings/toggleDevice", "android");
@@ -42,11 +53,14 @@ export default {
     return {
       device,
       handleMsg,
-      getDevice
+      getDevice,
     };
   },
 };
 </script>
 
 <style>
+.box{
+  margin-top: 0.6rem;
+}
 </style>

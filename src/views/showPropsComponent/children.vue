@@ -11,7 +11,6 @@
 
 <script lang="ts" setup>
 import {defineProps, defineEmits, computed} from "vue"
-import {Button} from "vant"
 import {useStore} from "vuex"
 const props= defineProps({
     title: String

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref, reactive, nextTick, onMounted, onUnmounted } from "vue";
+import {  ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { Button } from "vant";
 

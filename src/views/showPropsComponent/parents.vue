@@ -1,5 +1,8 @@
 <template>
-  <message title="父组件中发送的值" @sendMsg="getValue"></message>
+   <div>
+     <van-button type="success" @click="changeVal">父组件改变传递给子组件的值</van-button>
+   </div>
+  <message :title="state.title" @sendMsg="getValue"></message>
   <!-- <div>
     <Button type="success" @click="getDevice">发送到数据仓库的信息</Button>
     <div>{{device}}</div>
@@ -7,11 +10,19 @@
 </template>
 
 <script lang="ts" setup>
-import { computed} from "vue"
+import { computed, reactive} from "vue"
 import {useStore} from "vuex"
-import {Button} from "vant"
 import message from "./child.vue"
 // import message from "./children.vue"
+
+let state= reactive({
+  title: "8999999"
+});
+
+const changeVal=()=>{
+  state.title="未来有无限可能"
+}
+
 
 const getValue=(val)=>{
    console.log("得到子组件发送的值", val)
