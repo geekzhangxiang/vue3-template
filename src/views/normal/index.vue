@@ -1,5 +1,5 @@
 <template>
-  <div>{{name}}</div>
+  <div class="title">{{name}}</div>
 </template>
 
 <script>
@@ -14,6 +14,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.title{
+  color: $bg;
+}
 </style>
