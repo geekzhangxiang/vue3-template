@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: "./",
+  publicPath: process.env.BASE_URL,
   outputDir: "dist",
   productionSourceMap: false,
   css: {
