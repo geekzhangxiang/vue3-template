@@ -36,7 +36,7 @@ export default {
       slots：父组件传递过来的插槽（这个在以渲染函数返回时会有作用，后面会讲到）
       emit：当我们组件内部需要发出事件时会用到emit
     */
-  setup(props, { emit }) {
+  setup(props, { emit,expose }) {
 
     const state= reactive({
        arr:[
@@ -96,6 +96,15 @@ export default {
     const getDevice = () => {
       store.dispatch("settings/toggleDevice", "android");
     };
+
+    const getNewInfo=()=>{
+      return "梦想需要有实际行动，才能实现"
+    }
+    // 子组件中的方法通过expose暴露，让父组件使用
+    expose({
+      getNewInfo
+    })
+
     return {
       device,
       handleMsg,
