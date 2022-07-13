@@ -12,8 +12,9 @@
 <script lang="ts" setup>
 import { computed, onMounted, reactive, ref} from "vue"
 import {useStore} from "vuex"
-import message from "./child.vue"
-// import message from "./children.vue"
+// import message from "./child.vue"
+import message from "./children.vue"
+const store= useStore();
 let msgBox= ref()
 let state= reactive({
   title: "8999999"
@@ -33,12 +34,12 @@ onMounted(()=>{
   console.log("111111",msgBox.value.getNewInfo())
 })
 
-// const store= useStore();
 
-// let device= computed(()=> store.state.settings.device)
-// const getDevice=()=>{
-//    store.dispatch("settings/toggleDevice", "android")
-// }
+
+let device= computed(()=> store.state.settings.device)
+const getDevice=()=>{
+   store.dispatch("settings/toggleDevice", "android")
+}
 
 </script>
 

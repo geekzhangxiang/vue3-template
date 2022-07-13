@@ -13,5 +13,7 @@ const app = createApp(App)
 // 全局组件
 app.use(BaseComponents)
 app.use(BaseDirective)
+// 全局使用vant组件
+app.use(vant)
 vant(app)
 app.use(store).use(router).mount('#app')
