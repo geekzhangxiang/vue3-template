@@ -4,22 +4,32 @@
       >父组件改变传递给子组件的值</van-button
     >
   </div>
-  <message ref="msgBox" :title="state.title" @sendMsg="getValue"></message>
+  <message ref="msgBox" :title="state.title" @sendMsg="getValue">
+  <template v-slot>
+   {{state.msg.name}}
+  </template>
+  </message>
   <!-- <div>
     <Button type="success" @click="getDevice">发送到数据仓库的信息</Button>
     <div>{{device}}</div>
   </div> -->
+  
 </template>
 
 <script lang="ts" setup>
 import { computed, onMounted, reactive, ref, provide } from "vue";
 import { useStore } from "vuex";
-import message from "./child.vue"
+// import message from "./child.vue"
 // import message from "./children.vue";
+import message from "./newChild"
 const store = useStore();
 let msgBox = ref();
 let state = reactive({
   title: "8999999",
+  msg:{
+   name: "小明",
+   graduation: "ucla" 
+  }
 });
 const location = ref<string>("North Pole");
 const geolocation = reactive({

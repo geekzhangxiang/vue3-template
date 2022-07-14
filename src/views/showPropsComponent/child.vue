@@ -9,12 +9,13 @@
       发送到数据仓库的信息
     </van-button>
     <div>{{ device }}</div>
-    <grandson/>
+    <slot/>
+    <grandson />
   </div>
 </template>
 
 <script lang="ts">
-import {computed, onMounted, watch, reactive, inject,ref } from "vue";
+import { computed, onMounted, watch, reactive, inject,ref } from "vue";
 import { useStore } from "vuex";
 import { MapsList } from "./type";
 import grandson from "./grandson.vue"
@@ -42,7 +43,7 @@ export default {
       slots：父组件传递过来的插槽（这个在以渲染函数返回时会有作用，后面会讲到）
       emit：当我们组件内部需要发出事件时会用到emit
     */
-  setup(props, { emit, expose }) {
+  setup(props, { emit, expose}) {
     const state = reactive({
       arr: [
         { name: "zhangsan", age: 26 },
@@ -116,6 +117,7 @@ export default {
     const getNewInfo = () => {
       return "梦想需要有实际行动，才能实现";
     };
+    
     // 子组件中的方法通过expose暴露，让父组件使用
     expose({
       getNewInfo,
@@ -130,6 +132,7 @@ export default {
       userGeolocation,
       updateUserLocation
     };
+    
   },
 };
 </script>
